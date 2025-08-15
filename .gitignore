@@ -1,7 +1,30 @@
-.anchor
+# Node/Typescript
+node_modules/
+yarn.lock
+
+# Anchor + Solana build outputs
+target/
+**/target/
+dist/
+deployments/
 .DS_Store
-target
-**/*.rs.bk
-node_modules
-test-ledger
-.yarn
+
+# Anchor generated artifacts
+**/idl/
+**/types/
+
+# Local ledgers / validators / logs
+.test-ledger/
+.localnet/
+validator-ledger/
+*.log
+
+# Big toolchains / releases (DO NOT COMMIT)
+solana-release*
+*.tar.bz2
+*.tar.gz
+*.tgz
+*.zip
+
+# Misc
+.env
