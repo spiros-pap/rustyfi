@@ -9,7 +9,6 @@ Serves as an experimental foundation for token minting, swaps, and lending pools
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
 - [Setup & Running Locally](#setup--running-locally)
-- [Project Structure](#project-structure)
 - [Usage Guide](#usage-guide)
 - [Future Extensions](#future-extensions)
 - [License](#license)
@@ -75,30 +74,6 @@ Serves as an experimental foundation for token minting, swaps, and lending pools
 
 ### 5) Run tests
 `anchor test`
-
-### Project Structure
-
-rustyfi/
-
-├── migrations/           (Anchor migration scripts)
-
-├── programs/
-
-│   └── rustyfi/          (Rust Solana program)
-
-│       ├── Cargo.toml
-
-│       └── src/lib.rs
-
-├── tests/                (TypeScript tests)
-
-├── Anchor.toml           (Anchor configuration)
-
-├── package.json
-
-├── tsconfig.json
-
-└── yarn.lock
 
 ### Usage Guide
 
