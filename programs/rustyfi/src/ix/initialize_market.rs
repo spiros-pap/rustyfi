@@ -3,6 +3,7 @@ use anchor_spl::token::{Mint, Token, TokenAccount};
 
 use crate::events::MarketInitialized;
 use crate::state::{Market, MarketBumps};
+use crate::error::RustyfiError;
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone)]
 pub struct InitializeParams {
@@ -56,7 +57,7 @@ pub struct InitializeMarket<'info> {
 }
 
 pub fn initialize_market(ctx: Context<InitializeMarket>, params: InitializeParams) -> Result<()> {
-    require!(params.fee_bps <= 10_000, ErrorCode::InvalidFeeBps);
+    require!(params.fee_bps <= 10_000, RustyfiError::InvalidFeeBps);
 
     let bumps = MarketBumps {
         market: ctx.bumps.market,
@@ -91,8 +92,4 @@ pub fn initialize_market(ctx: Context<InitializeMarket>, params: InitializeParam
     Ok(())
 }
 
-#[error_code]
-pub enum ErrorCode {
-    #[msg("Fee basis points must be <= 10000")]
-    InvalidFeeBps,
-}
+
