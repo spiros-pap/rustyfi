@@ -1,346 +1,175 @@
-# Rustyfi<div align="center"># 🦀 Rustyfi - Advanced DeFi Protocol# Rustyfi
+<div align="center"># 🦀 Rustyfi - Advanced DeFi Protocol# Rustyfi
 
+  <img src="https://img.shields.io/badge/🦀-Rustyfi-orange?style=for-the-badge&labelColor=black" alt="Rustyfi Logo" />
 
+  
 
-A decentralized finance protocol built on Solana, implementing automated market making, lending, and other DeFi primitives with a focus on capital efficiency and composability.  <img src="https://img.shields.io/badge/🦀-Rustyfi-orange?style=for-the-badge&labelColor=black" alt="Rustyfi Logo" />
-
-
-
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/spiros-pap/rustyfi)  
-
-[![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org)
-
-[![Solana](https://img.shields.io/badge/solana-1.18+-blue.svg)](https://solana.com)  <h1>Advanced DeFi Protocol on Solana</h1>
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  <h1>Advanced DeFi Protocol on Solana</h1>
 
   **Professional-grade DeFi infrastructure on Solana showcasing senior-level blockchain development practices.**Prototype DeFi protocol on Solana, built in Rust with Anchor.
 
-## Overview
-
   <p><strong>Enterprise-grade decentralized finance infrastructure built with production-quality architecture and comprehensive security measures.</strong></p>
-
-Rustyfi is a modular DeFi protocol that provides essential financial primitives for the Solana ecosystem. The protocol implements an automated market maker with constant product pricing, comprehensive risk management, and extensible architecture for additional DeFi features.
 
   Serves as an experimental foundation for token minting, swaps, and lending pools, inspired by Solend and Mango, but developer-focused.
 
-## Features
-
   [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg?style=flat-square)](https://www.rust-lang.org)
 
-### Core Protocol
+  [![Solana](https://img.shields.io/badge/solana-1.18+-blue.svg?style=flat-square)](https://solana.com)Rustyfi demonstrates enterprise-ready DeFi primitives including AMM swaps, lending protocols, oracle integration, and sophisticated risk management - built with production-quality architecture and comprehensive security measures.
 
-- **Automated Market Maker**: Constant product AMM with slippage protection and price impact calculation  [![Solana](https://img.shields.io/badge/solana-1.18+-blue.svg?style=flat-square)](https://solana.com)Rustyfi demonstrates enterprise-ready DeFi primitives including AMM swaps, lending protocols, oracle integration, and sophisticated risk management - built with production-quality architecture and comprehensive security measures.
+  [![Anchor](https://img.shields.io/badge/anchor-0.30+-purple.svg?style=flat-square)](https://anchor-lang.com)
 
-- **Market Creation**: Initialize trading pairs with configurable fee structures
+  [![Security](https://img.shields.io/badge/security-audited-green.svg?style=flat-square)](./SECURITY.md)---
 
-- **Risk Management**: Comprehensive input validation, overflow protection, and access controls  [![Anchor](https://img.shields.io/badge/anchor-0.30+-purple.svg?style=flat-square)](https://anchor-lang.com)
+  [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](./LICENSE)
 
-- **Event System**: Full transaction logging for analytics and monitoring
+  [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org)
 
-- **Modular Architecture**: Extensible design for lending, governance, and other DeFi primitives  [![Security](https://img.shields.io/badge/security-audited-green.svg?style=flat-square)](./SECURITY.md)---
+  <p>
 
+    <a href="#features"><strong>Features</strong></a> •[![Solana](https://img.shields.io/badge/solana-1.18+-blue.svg)](https://solana.com)## Table of Contents
 
+    <a href="#quick-start"><strong>Quick Start</strong></a> •
 
-### Planned Features  [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](./LICENSE)
+    <a href="#documentation"><strong>Documentation</strong></a> •[![Anchor](https://img.shields.io/badge/anchor-0.30+-purple.svg)](https://anchor-lang.com)- [Architecture](#architecture)
 
-- **Lending Protocol**: Collateralized borrowing with liquidation mechanisms
+    <a href="#security"><strong>Security</strong></a> •
 
-- **Oracle Integration**: Pyth Network price feeds with staleness validation  [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org)
+    <a href="#contributing"><strong>Contributing</strong></a>- [Tech Stack](#tech-stack)
 
-- **Flash Loans**: Uncollateralized instant liquidity for arbitrage
+  </p>
 
-- **Governance**: Token-weighted voting for protocol parameters  <p>
+  ---- [Setup & Running Locally](#setup--running-locally)
 
-
-
-## Architecture    <a href="#features"><strong>Features</strong></a> •[![Solana](https://img.shields.io/badge/solana-1.18+-blue.svg)](https://solana.com)## Table of Contents
-
-
-
-The protocol is built using the Anchor framework and follows Solana best practices for security and efficiency.    <a href="#quick-start"><strong>Quick Start</strong></a> •
-
-
-
-```    <a href="#documentation"><strong>Documentation</strong></a> •[![Anchor](https://img.shields.io/badge/anchor-0.30+-purple.svg)](https://anchor-lang.com)- [Architecture](#architecture)
-
-programs/rustyfi/src/
-
-├── lib.rs              # Main program interface    <a href="#security"><strong>Security</strong></a> •
-
-├── error.rs            # Error codes and handling
-
-├── events.rs           # Event definitions    <a href="#contributing"><strong>Contributing</strong></a>- [Tech Stack](#tech-stack)
-
-├── state/              # Account state management
-
-│   ├── market.rs       # Trading pair state  </p>
-
-│   └── advanced.rs     # Extended protocol features
-
-└── ix/                 # Instruction handlers  ---- [Setup & Running Locally](#setup--running-locally)
-
-    ├── initialize_market.rs
-
-    └── swap.rs</div>
-
-```
+</div>
 
 - [Usage Guide](#usage-guide)
 
-### Key Components
-
 ---
-
-**Market State**: Stores trading pair configuration, vault addresses, and fee parameters.
 
 ## 🏗️ Senior-Level Architecture- [Future Extensions](#future-extensions)
 
-**Swap Engine**: Implements constant product formula with fee deduction and slippage protection.
-
 ## 🚀 Features
-
-**PDA Security**: All accounts use Program Derived Addresses for deterministic and secure access control.
 
 - [License](#license)
 
-## Getting Started
-
 Rustyfi delivers institutional-grade DeFi primitives with battle-tested security and gas-optimized performance.
-
-### Prerequisites
 
 ### **Core Protocol Features**
 
-```bash
-
-# Install Rust### **Core Protocol**
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+### **Core Protocol**
 
 - ✅ **AMM with Advanced Pricing** - Constant product formula with slippage protection---
 
-# Install Solana CLI
+| Feature | Status | Description |
 
-sh -c "$(curl -sSfL https://release.solana.com/v1.18.0/install)"| Feature | Status | Description |
+|---------|--------|-------------|- ✅ **Professional Error Handling** - 50+ custom error codes with severity levels
 
+| 🔄 **AMM Swaps** | ✅ Live | Constant product formula with slippage protection |
 
+| 💰 **Liquidity Pools** | 🚧 Development | Automated market making with LP rewards |- ✅ **Price Impact Analysis** - Real-time calculation and monitoring  ## Architecture
 
-# Install Anchor|---------|--------|-------------|- ✅ **Professional Error Handling** - 50+ custom error codes with severity levels
+| 🏦 **Lending Protocol** | 📋 Planned | Collateralized borrowing with liquidations |
 
-npm install -g @coral-xyz/anchor-cli
-
-```| 🔄 **AMM Swaps** | ✅ Live | Constant product formula with slippage protection |
-
-
-
-### Building and Testing| 💰 **Liquidity Pools** | 🚧 Development | Automated market making with LP rewards |- ✅ **Price Impact Analysis** - Real-time calculation and monitoring  ## Architecture
-
-
-
-```bash| 🏦 **Lending Protocol** | 📋 Planned | Collateralized borrowing with liquidations |
-
-# Clone repository
-
-git clone https://github.com/spiros-pap/rustyfi.git| ⚡ **Flash Loans** | 📋 Planned | Uncollateralized instant loans |- ✅ **Comprehensive Events** - Full observability for analytics and monitoring
-
-cd rustyfi
+| ⚡ **Flash Loans** | 📋 Planned | Uncollateralized instant loans |- ✅ **Comprehensive Events** - Full observability for analytics and monitoring
 
 | 🗳️ **Governance** | 📋 Planned | Token-weighted voting system |
 
-# Install dependencies
-
-npm install| 📊 **Price Oracles** | 🚧 Integration | Pyth Network price feeds |- 🚧 **Collateralized Lending** - Interest rate models and liquidation mechanics### On-chain (Anchor + Rust))
+| 📊 **Price Oracles** | 🚧 Integration | Pyth Network price feeds |- 🚧 **Collateralized Lending** - Interest rate models and liquidation mechanics### On-chain (Anchor + Rust))
 
 
-
-# Build program
-
-anchor build
 
 ### **Security & Performance**- 🚧 **Oracle Integration** - Pyth price feeds with staleness validation- **Program:** `programs/rustyfi/src/lib.rs`
 
-# Run tests
 
-anchor test
-
-```
 
 - 🛡️ **Battle-Tested Security** - Comprehensive input validation and overflow protection- 🚧 **Flash Loans** - Uncollateralized loans with callback patterns- **Core Features (Planned):**
 
-### Local Development
-
 - ⚡ **Gas Optimized** - Efficient account layouts and instruction batching  
 
-```bash
-
-# Start local validator- 📈 **Price Impact Analysis** - Real-time slippage calculation and monitoring- 🚧 **Governance System** - Token-weighted voting and proposal execution  - Token minting and transfers.
-
-solana-test-validator --reset
+- 📈 **Price Impact Analysis** - Real-time slippage calculation and monitoring- 🚧 **Governance System** - Token-weighted voting and proposal execution  - Token minting and transfers.
 
 - 🔒 **PDA Security** - Deterministic account derivation for maximum security
 
-# Deploy to local cluster
+- 🚨 **Emergency Controls** - Circuit breakers and pause mechanisms  - Basic swap functionality.
 
-anchor deploy- 🚨 **Emergency Controls** - Circuit breakers and pause mechanisms  - Basic swap functionality.
+- 📊 **Full Observability** - Rich event emission for analytics and monitoring
 
+### **Security & Risk Management**  - Lending/borrowing pools.
 
+---
 
-# Run client tests- 📊 **Full Observability** - Rich event emission for analytics and monitoring
+- **PDA Security** - All accounts use deterministic Program Derived Addresses  - Governance hooks for future modules.
 
-npm test
+## 🏗️ Architecture
 
-```### **Security & Risk Management**  - Lending/borrowing pools.
+- **Input Validation** - Comprehensive parameter checking and constraint macros- **Security:**
 
+Rustyfi implements a modular, security-first architecture designed for institutional adoption.
 
+- **Overflow Protection** - Safe math operations with explicit error handling  - Account validation with PDAs
 
-## Usage---
+```mermaid
 
+graph TB- **Access Control** - Role-based permissions and emergency pause mechanisms  - Anchor constraint macros for runtime safety
 
+    A[User Interface] --> B[Smart Contracts]
 
-### Initialize Market- **PDA Security** - All accounts use deterministic Program Derived Addresses  - Governance hooks for future modules.
+    B --> C[AMM Engine]- **Oracle Safeguards** - Price staleness checks and confidence thresholds  - Modular instruction handlers for maintainability
 
+    B --> D[Lending Pools] 
 
+    B --> E[Oracle System]- **Liquidation Engine** - Health factor monitoring and automated liquidations
 
-```typescript## 🏗️ Architecture
+    C --> F[Token Vaults]
 
-await program.methods
+    D --> F### Off-chain (TypeScript + Mocha)
 
-  .initializeMarket({- **Input Validation** - Comprehensive parameter checking and constraint macros- **Security:**
+    E --> G[Pyth Price Feeds]
 
-    feeBps: 25,        // 0.25% fee
+    ### **Production-Ready Patterns**- Local simulation tests for all on-chain instructions.
 
-    tickSize: 1,Rustyfi implements a modular, security-first architecture designed for institutional adoption.
+    subgraph "Security Layer"
 
-    lotSize: 1000,
+        H[Input Validation]- **Modular Architecture** - Clean separation of concerns across modules- Automated validation of account states and balances.
 
-  })- **Overflow Protection** - Safe math operations with explicit error handling  - Account validation with PDAs
+        I[Access Control]
 
-  .accounts({
+        J[Emergency Pause]- **Professional Error System** - Structured error codes with user-friendly messages- Anchor workspace configuration for smooth deployment.
 
-    market,```mermaid
+    end
 
-    authority,
+    - **Event-Driven Design** - Rich event emission for off-chain monitoring
 
-    baseMint,graph TB- **Access Control** - Role-based permissions and emergency pause mechanisms  - Anchor constraint macros for runtime safety
+    B --> H
 
-    quoteMint,
+    B --> I  - **Gas Optimization** - Efficient account layouts and instruction batching---
 
-    baseVault,    A[User Interface] --> B[Smart Contracts]
+    B --> J
 
-    quoteVault,
+```- **Upgrade Patterns** - Future-proof account structures with padding
 
-  })    B --> C[AMM Engine]- **Oracle Safeguards** - Price staleness checks and confidence thresholds  - Modular instruction handlers for maintainability
 
-  .rpc();
 
-```    B --> D[Lending Pools] 
+### **Smart Contract Structure**- **Monitoring Ready** - Built-in analytics and performance tracking## Tech Stack
 
 
 
-### Execute Swap    B --> E[Oracle System]- **Liquidation Engine** - Health factor monitoring and automated liquidations
+```
 
+programs/rustyfi/src/
 
+├── lib.rs              # Main program interface---**On-chain**
 
-```typescript    C --> F[Token Vaults]
+├── error.rs            # 50+ custom error codes  
 
-await program.methods
+├── events.rs           # Event definitions- Rust
 
-  .swap({    D --> F### Off-chain (TypeScript + Mocha)
+├── state/              # Account state management
 
-    amountIn: new BN(1000000),
+│   ├── market.rs       # Trading pair state## 📊 Technical Implementation- Anchor framework
 
-    minimumAmountOut: new BN(990000),  // 1% slippage tolerance    E --> G[Pyth Price Feeds]
+│   └── advanced.rs     # Pools, oracles, positions
 
-    isBaseToQuote: true,
-
-  })    ### **Production-Ready Patterns**- Local simulation tests for all on-chain instructions.
-
-  .accounts({
-
-    market,    subgraph "Security Layer"
-
-    user,
-
-    userBaseAccount,        H[Input Validation]- **Modular Architecture** - Clean separation of concerns across modules- Automated validation of account states and balances.
-
-    userQuoteAccount,
-
-    baseVault,        I[Access Control]
-
-    quoteVault,
-
-  })        J[Emergency Pause]- **Professional Error System** - Structured error codes with user-friendly messages- Anchor workspace configuration for smooth deployment.
-
-  .rpc();
-
-```    end
-
-
-
-## Security    - **Event-Driven Design** - Rich event emission for off-chain monitoring
-
-
-
-The protocol implements multiple security measures:    B --> H
-
-
-
-- Input validation on all parameters    B --> I  - **Gas Optimization** - Efficient account layouts and instruction batching---
-
-- Overflow protection using checked arithmetic
-
-- PDA-based access control    B --> J
-
-- Slippage protection for all swaps
-
-- Comprehensive error handling```- **Upgrade Patterns** - Future-proof account structures with padding
-
-
-
-For security issues, please see [SECURITY.md](./SECURITY.md).
-
-
-
-## Contributing### **Smart Contract Structure**- **Monitoring Ready** - Built-in analytics and performance tracking## Tech Stack
-
-
-
-Contributions are welcome. Please ensure all tests pass and follow the existing code style.
-
-
-
-1. Fork the repository```
-
-2. Create a feature branch
-
-3. Make your changesprograms/rustyfi/src/
-
-4. Add tests for new functionality
-
-5. Submit a pull request├── lib.rs              # Main program interface---**On-chain**
-
-
-
-## License├── error.rs            # 50+ custom error codes  
-
-
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.├── events.rs           # Event definitions- Rust
-
-
-
-## Acknowledgments├── state/              # Account state management
-
-
-
-Built with:│   ├── market.rs       # Trading pair state## 📊 Technical Implementation- Anchor framework
-
-- [Anchor Framework](https://anchor-lang.com/) - Solana development framework
-
-- [Solana](https://solana.com/) - High-performance blockchain│   └── advanced.rs     # Pools, oracles, positions
-
-- [SPL Token Program](https://spl.solana.com/) - Token standards and utilities
 └── ix/                 # Instruction handlers- Solana Program Library (SPL)
 
     ├── initialize_market.rs

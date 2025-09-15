@@ -68,14 +68,12 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
     let market = &ctx.accounts.market;
     let pool = &mut ctx.accounts.pool;
 
-    // SECURITY: Comprehensive input validation
+    // Input validation
     require!(params.amount_in > 0, RustyfiError::InvalidAmount);
     require!(params.minimum_amount_out > 0, RustyfiError::InvalidMinimumAmount);
-    
-    // Prevent dust attacks and ensure meaningful swap amounts
     require!(params.amount_in >= 1000, RustyfiError::SwapAmountTooSmall);
     
-    // Validate user has sufficient balance before proceeding
+    // Validate user has sufficient balance
     let user_balance = if params.is_base_to_quote {
         ctx.accounts.user_base_account.amount
     } else {
@@ -93,12 +91,9 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
     // Calculate swap using constant product formula (x * y = k)
     let (amount_out, new_base_reserve, new_quote_reserve) = if params.is_base_to_quote {
         // Selling base for quote
-        // SECURITY: Add full amount to reserves first, then deduct fees
         let new_base_reserve = base_reserve
             .checked_add(params.amount_in)
             .ok_or(RustyfiError::MathOverflow)?;
-
-        // Apply fee to effective amount for calculation
         let amount_in_with_fee = params.amount_in
             .checked_mul(10000 - market.fee_bps as u64)
             .ok_or(RustyfiError::MathOverflow)?
@@ -125,7 +120,6 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
         (amount_out, new_base_reserve, new_quote_reserve)
     } else {
         // Selling quote for base
-        // SECURITY: Add full amount to reserves first, then deduct fees
         let new_quote_reserve = quote_reserve
             .checked_add(params.amount_in)
             .ok_or(RustyfiError::MathOverflow)?;
@@ -247,7 +241,7 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
         .checked_add(1)
         .ok_or(RustyfiError::MathOverflow)?;
 
-    // Emit swap event with timestamp for monitoring
+    // Emit swap event
     emit!(SwapExecuted {
         market: market.key(),
         user: ctx.accounts.user.key(),
