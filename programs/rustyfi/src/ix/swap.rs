@@ -68,9 +68,20 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
     let market = &ctx.accounts.market;
     let pool = &mut ctx.accounts.pool;
 
-    // Input validation
+    // SECURITY: Comprehensive input validation
     require!(params.amount_in > 0, RustyfiError::InvalidAmount);
     require!(params.minimum_amount_out > 0, RustyfiError::InvalidMinimumAmount);
+    
+    // Prevent dust attacks and ensure meaningful swap amounts
+    require!(params.amount_in >= 1000, RustyfiError::SwapAmountTooSmall);
+    
+    // Validate user has sufficient balance before proceeding
+    let user_balance = if params.is_base_to_quote {
+        ctx.accounts.user_base_account.amount
+    } else {
+        ctx.accounts.user_quote_account.amount
+    };
+    require!(user_balance >= params.amount_in, RustyfiError::InsufficientBalance);
 
     // Get current reserves from vaults
     let base_reserve = ctx.accounts.base_vault.amount;
@@ -82,14 +93,16 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
     // Calculate swap using constant product formula (x * y = k)
     let (amount_out, new_base_reserve, new_quote_reserve) = if params.is_base_to_quote {
         // Selling base for quote
+        // SECURITY: Add full amount to reserves first, then deduct fees
+        let new_base_reserve = base_reserve
+            .checked_add(params.amount_in)
+            .ok_or(RustyfiError::MathOverflow)?;
+
+        // Apply fee to effective amount for calculation
         let amount_in_with_fee = params.amount_in
             .checked_mul(10000 - market.fee_bps as u64)
             .ok_or(RustyfiError::MathOverflow)?
             .checked_div(10000)
-            .ok_or(RustyfiError::MathOverflow)?;
-
-        let new_base_reserve = base_reserve
-            .checked_add(amount_in_with_fee)
             .ok_or(RustyfiError::MathOverflow)?;
 
         // Calculate amount out: dy = y * dx / (x + dx)
@@ -112,14 +125,15 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
         (amount_out, new_base_reserve, new_quote_reserve)
     } else {
         // Selling quote for base
+        // SECURITY: Add full amount to reserves first, then deduct fees
+        let new_quote_reserve = quote_reserve
+            .checked_add(params.amount_in)
+            .ok_or(RustyfiError::MathOverflow)?;
+
         let amount_in_with_fee = params.amount_in
             .checked_mul(10000 - market.fee_bps as u64)
             .ok_or(RustyfiError::MathOverflow)?
             .checked_div(10000)
-            .ok_or(RustyfiError::MathOverflow)?;
-
-        let new_quote_reserve = quote_reserve
-            .checked_add(amount_in_with_fee)
             .ok_or(RustyfiError::MathOverflow)?;
 
         let numerator = base_reserve
@@ -233,7 +247,7 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
         .checked_add(1)
         .ok_or(RustyfiError::MathOverflow)?;
 
-    // Emit swap event
+    // Emit swap event with timestamp for monitoring
     emit!(SwapExecuted {
         market: market.key(),
         user: ctx.accounts.user.key(),
@@ -242,6 +256,7 @@ pub fn swap(ctx: Context<Swap>, params: SwapParams) -> Result<()> {
         is_base_to_quote: params.is_base_to_quote,
         price_impact,
         fee_collected: params.amount_in - (params.amount_in * (10000 - market.fee_bps as u64) / 10000),
+        timestamp: Clock::get()?.unix_timestamp,
     });
 
     Ok(())
